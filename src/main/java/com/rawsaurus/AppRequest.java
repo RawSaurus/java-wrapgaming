@@ -8,6 +8,7 @@ import com.rawsaurus.model.status.CheckStatus;
 import com.rawsaurus.model.status.ErrorStatus;
 import com.rawsaurus.model.status.OkStatus;
 import com.rawsaurus.model.status.OkStatusMap;
+import com.rawsaurus.model.tankopedia.Vehicles;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -108,10 +109,10 @@ public class AppRequest {
 
         checkStatus(response);
 
-        Type statusType = new TypeToken<OkStatus<Players>>(){}.getType();
-        OkStatus<Players> status = gson.fromJson(response, statusType);
+        Type statusType = new TypeToken<OkStatus<List<Players>>>(){}.getType();
+        OkStatus<List<Players>> status = gson.fromJson(response, statusType);
 
-        return Arrays.asList(status.getData());
+        return status.getData();
     }
 
     //getPlayersPersonalData(){}
@@ -124,8 +125,22 @@ public class AppRequest {
         checkStatus(response);
 
 
-        Type statusType = new TypeToken<OkStatusMap<PlayersVehicles>>(){}.getType();
-        OkStatusMap<PlayersVehicles> status = gson.fromJson(response, statusType);
+        Type statusType = new TypeToken<OkStatus<Map<String, List<PlayersVehicles>>>>(){}.getType();
+        OkStatus<Map<String, List<PlayersVehicles>>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    //modules_tree not mapping correctly
+    public Map<String, Vehicles> getVehicles(){
+        String uri = requestBuilder("encyclopedia/vehicles/", "");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, Vehicles>>>(){}.getType();
+        OkStatus<Map<String, Vehicles>> status = gson.fromJson(response, statusType);
 
         return status.getData();
     }

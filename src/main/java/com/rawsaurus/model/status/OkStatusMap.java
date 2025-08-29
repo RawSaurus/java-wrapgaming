@@ -8,7 +8,7 @@ import java.util.Map;
 public class OkStatusMap<T> {
     private String status;
     private Meta meta;
-    private Map<String, List<T>> data;
+    private Map<String, T> data;
 
     public String getStatus() {
         return status;
@@ -18,7 +18,7 @@ public class OkStatusMap<T> {
         return meta;
     }
 
-    public Map<String, List<T>> getData() {
+    public Map<String, T> getData() {
         return data;
     }
 

@@ -24,9 +24,10 @@ public class App
     public static void main( String[] args )
     {
         AppRequest appRequest = new AppRequest();
-        List<Players> list = appRequest.getPlayers("rawsaurus");
-        System.out.println(list.get(0).getAccount_id());
-        System.out.println(list.get(0).getNickname());
+//        System.out.println(appRequest.getVehicles().toString());
+//        List<Players> list = appRequest.getPlayers("rawsaurus");
+//        System.out.println(list.get(0).getAccount_id());
+//        System.out.println(list.get(0).getNickname());
         // Tank tank = AppRequest().requestBuilder().findTank().params().fields().build();
 
 //        HttpClient client = HttpClient.newHttpClient();
