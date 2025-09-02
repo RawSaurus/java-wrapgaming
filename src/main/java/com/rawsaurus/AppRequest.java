@@ -8,7 +8,7 @@ import com.rawsaurus.model.status.CheckStatus;
 import com.rawsaurus.model.status.ErrorStatus;
 import com.rawsaurus.model.status.OkStatus;
 import com.rawsaurus.model.status.OkStatusMap;
-import com.rawsaurus.model.tankopedia.Vehicles;
+import com.rawsaurus.model.tankopedia.*;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -141,6 +141,163 @@ public class AppRequest {
 
         Type statusType = new TypeToken<OkStatus<Map<String, Vehicles>>>(){}.getType();
         OkStatus<Map<String, Vehicles>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public Map<String, VehicleCharacteristics> getVehicleCharacteristics(int tankId){
+        String uri = requestBuilder("encyclopedia/vehicleprofile/", "&tank_id=" + tankId);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, VehicleCharacteristics>>>(){}.getType();
+        OkStatus<Map<String, VehicleCharacteristics>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public Map<String, Achievements> getAchievements(){
+        String uri = requestBuilder("encyclopedia/achievements/", "");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, Achievements>>>(){}.getType();
+        OkStatus<Map<String, Achievements>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public TankopediaInformation getTankopediaInformation(){
+        String uri = requestBuilder("encyclopedia/info/", "");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<TankopediaInformation>>(){}.getType();
+        OkStatus<TankopediaInformation> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public Map<String, Maps> getMaps(){
+        String uri = requestBuilder("encyclopedia/arenas/", "");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, Maps>>>(){}.getType();
+        OkStatus<Map<String, Maps>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public Map<String, EquipmentAndConsumables> getEquipmentAndConsumables(){
+        String uri = requestBuilder("encyclopedia/provisions/", "");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, EquipmentAndConsumables>>>(){}.getType();
+        OkStatus<Map<String, EquipmentAndConsumables>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public Map<String, PersonalMissions> getPersonalMissions(){
+        String uri = requestBuilder("encyclopedia/personalmissions/", "");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, PersonalMissions>>>(){}.getType();
+        OkStatus<Map<String, PersonalMissions>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public Map<String, PersonalReserves> getPersonalReserves(){
+        String uri = requestBuilder("encyclopedia/boosters/", "");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, PersonalReserves>>>(){}.getType();
+        OkStatus<Map<String, PersonalReserves>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public Map<String, VehicleConfigurations[]> getVehicleConfigurations(int tankId){
+        String uri = requestBuilder("encyclopedia/vehicleprofiles/", "&tank_id=" + tankId);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, VehicleConfigurations[]>>>(){}.getType();
+        OkStatus<Map<String, VehicleConfigurations[]>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public Map<String, Modules> getModules(){
+        //default_profile is an extra, without adding attribute will be null
+        String uri = requestBuilder("encyclopedia/modules/", "");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, Modules>>>(){}.getType();
+        OkStatus<Map<String, Modules>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public Map<String, Badges> getBadges(){
+        String uri = requestBuilder("encyclopedia/badges/", "");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, Badges>>>(){}.getType();
+        OkStatus<Map<String, Badges>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public Map<String, CrewQualifications> getCrewQualifications(){
+        String uri = requestBuilder("encyclopedia/crewroles/", "");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, CrewQualifications>>>(){}.getType();
+        OkStatus<Map<String, CrewQualifications>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public Map<String, CrewSkills> getCrewSkills(){
+        String uri = requestBuilder("encyclopedia/crewskills/", "");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, CrewSkills>>>(){}.getType();
+        OkStatus<Map<String, CrewSkills>> status = gson.fromJson(response, statusType);
 
         return status.getData();
     }

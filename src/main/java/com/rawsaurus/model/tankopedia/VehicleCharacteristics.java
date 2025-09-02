@@ -3,308 +3,135 @@ package com.rawsaurus.model.tankopedia;
 import java.util.Arrays;
 import java.util.Map;
 
-public class Vehicles {
-    private String description;
-    private int[] engines;
-    private int[] guns;
-    private boolean is_gift;
-    private boolean is_premium;
-    private boolean is_premium_igr;
-    private boolean is_wheeled;
-    private String name;
-    private String nation;
-    private Map<String, Integer> next_tanks;
-    private int price_credit;
-    private int price_gold;
-    private Map<String, Integer> prices_xp;
-    private int[] provisions;
-    private int[] radios;
-    private String short_name;
-    private int[] suspensions;
-    private String tag;
+public class VehicleCharacteristics {
+    private int hp;
+    private int hull_hp;
+    private int hull_weight;
+    private int max_ammo;
+    private int max_weight;
+    private String profile_id;
+    private int speed_backward;
+    private int speed_forward;
     private int tank_id;
-    private int tier;
-    private int[] turrets;
-    private String type;
-    private Crew[] crew;
-    private DefaultProfile default_profile;
-    private Images images;
-    private Map<String, ModulesTree> modules_tree;
+    private int weight;
+    private Ammo[] ammo;
+    private Armor armor;
+    private Engine engine;
+    private Gun gun;
+    private Modules modules;
+    private Radio radio;
+    private Rapid rapid;
+    private Siege siege;
+    private Suspension suspension;
+    private Turret turret;
 
-    public String getDescription() {
-        return description;
+    public int getHp() {
+        return hp;
     }
 
-    public int[] getEngines() {
-        return engines;
+    public int getHull_hp() {
+        return hull_hp;
     }
 
-    public int[] getGuns() {
-        return guns;
+    public int getHull_weight() {
+        return hull_weight;
     }
 
-    public boolean isIs_gift() {
-        return is_gift;
+    public int getMax_ammo() {
+        return max_ammo;
     }
 
-    public boolean isIs_premium() {
-        return is_premium;
+    public int getMax_weight() {
+        return max_weight;
     }
 
-    public boolean isIs_premium_igr() {
-        return is_premium_igr;
+    public String getProfile_id() {
+        return profile_id;
     }
 
-    public boolean isIs_wheeled() {
-        return is_wheeled;
+    public int getSpeed_backward() {
+        return speed_backward;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getNation() {
-        return nation;
-    }
-
-    public Map<String, Integer> getNext_tanks() {
-        return next_tanks;
-    }
-
-    public int getPrice_credit() {
-        return price_credit;
-    }
-
-    public int getPrice_gold() {
-        return price_gold;
-    }
-
-    public Map<String, Integer> getPrices_xp() {
-        return prices_xp;
-    }
-
-    public int[] getProvisions() {
-        return provisions;
-    }
-
-    public int[] getRadios() {
-        return radios;
-    }
-
-    public String getShort_name() {
-        return short_name;
-    }
-
-    public int[] getSuspensions() {
-        return suspensions;
-    }
-
-    public String getTag() {
-        return tag;
+    public int getSpeed_forward() {
+        return speed_forward;
     }
 
     public int getTank_id() {
         return tank_id;
     }
 
-    public int getTier() {
-        return tier;
+    public int getWeight() {
+        return weight;
     }
 
-    public int[] getTurrets() {
-        return turrets;
+    public Ammo[] getAmmo() {
+        return ammo;
     }
 
-    public String getType() {
-        return type;
+    public Armor getArmor() {
+        return armor;
     }
 
-    public Crew[] getCrew() {
-        return crew;
+    public Engine getEngine() {
+        return engine;
     }
 
-    public DefaultProfile getDefault_profile() {
-        return default_profile;
+    public Gun getGun() {
+        return gun;
     }
 
-    public Images getImages() {
-        return images;
+    public Modules getModules() {
+        return modules;
     }
 
-    public Map<String, ModulesTree> getModules_tree() {
-        return modules_tree;
+    public Radio getRadio() {
+        return radio;
+    }
+
+    public Rapid getRapid() {
+        return rapid;
+    }
+
+    public Siege getSiege() {
+        return siege;
+    }
+
+    public Suspension getSuspension() {
+        return suspension;
+    }
+
+    public Turret getTurret() {
+        return turret;
     }
 
     @Override
     public String toString() {
-        return "Vehicles{" +
-                "description='" + description + '\'' +
-                ", engines=" + Arrays.toString(engines) +
-                ", guns=" + Arrays.toString(guns) +
-                ", is_gift=" + is_gift +
-                ", is_premium=" + is_premium +
-                ", is_premium_igr=" + is_premium_igr +
-                ", is_wheeled=" + is_wheeled +
-                ", name='" + name + '\'' +
-                ", nation='" + nation + '\'' +
-                ", next_tanks=" + next_tanks +
-                ", price_credit=" + price_credit +
-                ", price_gold=" + price_gold +
-                ", prices_xp=" + prices_xp +
-                ", provisions=" + Arrays.toString(provisions) +
-                ", radios=" + Arrays.toString(radios) +
-                ", short_name='" + short_name + '\'' +
-                ", suspensions=" + Arrays.toString(suspensions) +
-                ", tag='" + tag + '\'' +
+        return "VehicleCharacteristics{" +
+                "hp=" + hp +
+                ", hull_hp=" + hull_hp +
+                ", hull_weight=" + hull_weight +
+                ", max_ammo=" + max_ammo +
+                ", max_weight=" + max_weight +
+                ", profile_id='" + profile_id + '\'' +
+                ", speed_backward=" + speed_backward +
+                ", speed_forward=" + speed_forward +
                 ", tank_id=" + tank_id +
-                ", tier=" + tier +
-                ", turrets=" + Arrays.toString(turrets) +
-                ", type='" + type + '\'' +
-                ", crew=" + Arrays.toString(crew) +
-                ", default_profile=" + default_profile +
-                ", images=" + images +
-                ", modules_tree=" + modules_tree +
+                ", weight=" + weight +
+                ", ammo=" + Arrays.toString(ammo) +
+                ", armor=" + armor +
+                ", engine=" + engine +
+                ", gun=" + gun +
+                ", modules=" + modules +
+                ", radio=" + radio +
+                ", rapid=" + rapid +
+                ", siege=" + siege +
+                ", suspension=" + suspension +
+                ", turret=" + turret +
                 '}';
     }
 
-    private static class Crew{
-        private String member_id;
-        private Map<String, String> roles;
-
-        public String getMember_id() {
-            return member_id;
-        }
-
-        public Map<String, String> getRoles() {
-            return roles;
-        }
-
-        @Override
-        public String toString() {
-            return "Crew{" +
-                    "member_id='" + member_id + '\'' +
-                    ", roles=" + roles +
-                    '}';
-        }
-    }
-
-    private static class DefaultProfile{
-        private int hp;
-        private int hull_hp;
-        private int hull_weight;
-        private int max_ammo;
-        private int max_weight;
-        private int speed_backward;
-        private int speed_forward;
-        private int weight;
-        private Ammo[] ammo;
-        private Armor armor;
-        private Engine engine;
-        private Gun gun;
-        private Modules modules;
-        private Radio radio;
-        private Rapid rapid;
-        private Siege siege;
-        private Suspension suspension;
-        private Turret turret;
-
-        public int getHp() {
-            return hp;
-        }
-
-        public int getHull_hp() {
-            return hull_hp;
-        }
-
-        public int getHull_weight() {
-            return hull_weight;
-        }
-
-        public int getMax_ammo() {
-            return max_ammo;
-        }
-
-        public int getMax_weight() {
-            return max_weight;
-        }
-
-        public int getSpeed_backward() {
-            return speed_backward;
-        }
-
-        public int getSpeed_forward() {
-            return speed_forward;
-        }
-
-        public int getWeight() {
-            return weight;
-        }
-
-        public Ammo[] getAmmo() {
-            return ammo;
-        }
-
-        public Armor getArmor() {
-            return armor;
-        }
-
-        public Engine getEngine() {
-            return engine;
-        }
-
-        public Gun getGun() {
-            return gun;
-        }
-
-        public Modules getModules() {
-            return modules;
-        }
-
-        public Radio getRadio() {
-            return radio;
-        }
-
-        public Rapid getRapid() {
-            return rapid;
-        }
-
-        public Siege getSiege() {
-            return siege;
-        }
-
-        public Suspension getSuspension() {
-            return suspension;
-        }
-
-        public Turret getTurret() {
-            return turret;
-        }
-
-        @Override
-        public String toString() {
-            return "DefaultProfile{" +
-                    "hp=" + hp +
-                    ", hull_hp=" + hull_hp +
-                    ", hull_weight=" + hull_weight +
-                    ", max_ammo=" + max_ammo +
-                    ", max_weight=" + max_weight +
-                    ", speed_backward=" + speed_backward +
-                    ", speed_forward=" + speed_forward +
-                    ", weight=" + weight +
-                    ", ammo=" + Arrays.toString(ammo) +
-                    ", armor=" + armor +
-                    ", engine=" + engine +
-                    ", gun=" + gun +
-                    ", modules=" + modules +
-                    ", radio=" + radio +
-                    ", rapid=" + rapid +
-                    ", siege=" + siege +
-                    ", suspension=" + suspension +
-                    ", turret=" + turret +
-                    '}';
-        }
-
-        private static class Ammo{
+    private static class Ammo{
             private int[] damage;
             private int[] penetration;
             private String type;
@@ -839,87 +666,4 @@ public class Vehicles {
                         '}';
             }
         }
-    }
-    private static class Images{
-        private String big_icon;
-        private String contour_icon;
-        private String small_icon;
-
-        public String getBig_icon() {
-            return big_icon;
-        }
-
-        public String getContour_icon() {
-            return contour_icon;
-        }
-
-        public String getSmall_icon() {
-            return small_icon;
-        }
-
-        @Override
-        public String toString() {
-            return "Images{" +
-                    "big_icon='" + big_icon + '\'' +
-                    ", contour_icon='" + contour_icon + '\'' +
-                    ", small_icon='" + small_icon + '\'' +
-                    '}';
-        }
-    }
-    private static class ModulesTree{
-        private boolean is_default;
-        private int module_id;
-        private String name;
-        private int[] next_modules;
-        private int[] next_tanks;
-        private int price_credit;
-        private int price_xp;
-        private String type;
-
-        public boolean isIs_default() {
-            return is_default;
-        }
-
-        public int getModule_id() {
-            return module_id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public int[] getNext_modules() {
-            return next_modules;
-        }
-
-        public int[] getNext_tanks() {
-            return next_tanks;
-        }
-
-        public int getPrice_credit() {
-            return price_credit;
-        }
-
-        public int getPrice_xp() {
-            return price_xp;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        @Override
-        public String toString() {
-            return "ModulesTree{" +
-                    "is_default=" + is_default +
-                    ", module_id=" + module_id +
-                    ", name='" + name + '\'' +
-                    ", next_modules=" + Arrays.toString(next_modules) +
-                    ", next_tanks=" + Arrays.toString(next_tanks) +
-                    ", price_credit=" + price_credit +
-                    ", price_xp=" + price_xp +
-                    ", type='" + type + '\'' +
-                    '}';
-        }
-    }
 }

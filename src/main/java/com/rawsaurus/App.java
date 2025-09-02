@@ -24,7 +24,21 @@ public class App
     public static void main( String[] args )
     {
         AppRequest appRequest = new AppRequest();
-//        System.out.println(appRequest.getVehicles().toString());
+        System.out.println(appRequest.getCrewSkills());
+//        System.out.println(appRequest.getCrewQualifications());
+//        System.out.println(appRequest.getBadges());
+//        System.out.println(appRequest.getModules());
+//        System.out.println(Arrays.toString(appRequest.getVehicleConfigurations(1).get("1")));
+//        System.out.println(appRequest.getPersonalReserves());
+//        System.out.println(appRequest.getPersonalMissions());
+//        System.out.println(appRequest.getEquipmentAndConsumables());
+//        System.out.println(appRequest.getMaps());
+//        System.out.println(appRequest.getTankopediaInformation());
+//        System.out.println(appRequest.getAchievements());
+//        System.out.println(appRequest.getVehicleCharacteristics(1));
+//        System.out.println(appRequest.getVehicles().get("1").toString());
+
+
 //        List<Players> list = appRequest.getPlayers("rawsaurus");
 //        System.out.println(list.get(0).getAccount_id());
 //        System.out.println(list.get(0).getNickname());
