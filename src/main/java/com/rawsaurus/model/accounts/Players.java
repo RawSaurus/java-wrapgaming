@@ -1,8 +1,8 @@
 package com.rawsaurus.model.accounts;
 
 public class Players {
-    private String account_id;
-    private String nickname;
+    private final String account_id;
+    private final String nickname;
 
     Players(Builder builder){
         this.account_id = builder.account_id;

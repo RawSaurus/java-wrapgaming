@@ -2,12 +2,22 @@ package com.rawsaurus;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.rawsaurus.enums.Distribution;
+import com.rawsaurus.model.accounts.PlayerPersonalData;
 import com.rawsaurus.model.accounts.Players;
+import com.rawsaurus.model.accounts.PlayersAchievements;
 import com.rawsaurus.model.accounts.PlayersVehicles;
+import com.rawsaurus.model.globalmap.Fronts;
+import com.rawsaurus.model.globalmap.Provinces;
+import com.rawsaurus.model.players_vehicles.VehicleAchievements;
+import com.rawsaurus.model.players_vehicles.VehicleMasteryDistribution;
+import com.rawsaurus.model.players_vehicles.VehicleStatistics;
 import com.rawsaurus.model.status.CheckStatus;
 import com.rawsaurus.model.status.ErrorStatus;
 import com.rawsaurus.model.status.OkStatus;
 import com.rawsaurus.model.status.OkStatusMap;
+import com.rawsaurus.model.strongholds.ClanReserves;
+import com.rawsaurus.model.strongholds.InformationAboutStronghold;
 import com.rawsaurus.model.tankopedia.*;
 
 import java.io.IOException;
@@ -27,6 +37,7 @@ public class AppRequest {
     private String applicationId = "743f4a65d003daeb75b7ad2ac49ba541";
     private String stringRequest;
     int accountId = 562436344;
+    int clanId = 500202208;
 
 
     private final HttpManager httpManager;
@@ -99,10 +110,6 @@ public class AppRequest {
     //5. return data
 
     public List<Players> getPlayers(String search){
-        //dummy data
-//        if(search == null || search.isEmpty()){
-//            search = "rawsaurus";
-//        }
         String uri = requestBuilder("account/list/", "&search=" + search);
 
         String response = newRequest(uri);
@@ -127,6 +134,32 @@ public class AppRequest {
 
         Type statusType = new TypeToken<OkStatus<Map<String, List<PlayersVehicles>>>>(){}.getType();
         OkStatus<Map<String, List<PlayersVehicles>>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public Map<String, PlayerPersonalData> getPlayerPersonalData(String accessToken, int accountId){
+        String uri = requestBuilder("account/info/","&access_token=" + accessToken + "&account_id=" + accountId + "&extra=private.boosters%2C+private.garage%2C+private.grouped_contacts%2C+private.personal_missions%2C+private.rented%2C+statistics.epic%2C+statistics.fallout%2C+statistics.globalmap_absolute%2C+statistics.globalmap_champion%2C+statistics.globalmap_middle%2C+statistics.random%2C+statistics.ranked_10x10%2C+statistics.ranked_15x15%2C+statistics.ranked_battles%2C+statistics.ranked_battles_current%2C+statistics.ranked_battles_previous%2C+statistics.ranked_season_1%2C+statistics.ranked_season_2%2C+statistics.ranked_season_3%2C");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, PlayerPersonalData>>>(){}.getType();
+        OkStatus<Map<String, PlayerPersonalData>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public Map<String, PlayersAchievements> getPlayersAchievements(int accountId){
+        String uri = requestBuilder("account/achievements/", "&account_id=" + accountId);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, PlayersAchievements>>>(){}.getType();
+        OkStatus<Map<String, PlayersAchievements>> status = gson.fromJson(response, statusType);
 
         return status.getData();
     }
@@ -298,6 +331,109 @@ public class AppRequest {
 
         Type statusType = new TypeToken<OkStatus<Map<String, CrewSkills>>>(){}.getType();
         OkStatus<Map<String, CrewSkills>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+
+    public Map<String, List<VehicleStatistics>> getVehicleStatistics(int accountId){
+        String uri = requestBuilder("tanks/stats/", "&account_id=" + accountId);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, List<VehicleStatistics>>>>(){}.getType();
+        OkStatus<Map<String, List<VehicleStatistics>>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public Map<String, List<VehicleAchievements>> getVehicleAchievements(int accountId){
+        String uri = requestBuilder("tanks/achievements/", "&account_id=" + accountId);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, List<VehicleAchievements>>>>(){}.getType();
+        OkStatus<Map<String, List<VehicleAchievements>>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public  VehicleMasteryDistribution getVehicleMasteryDistribution(Distribution distribution, int... percentile){
+        StringBuilder sb = new StringBuilder();
+        if(percentile.length > 2){
+            for(int i = 0; i<percentile.length-1; i++){
+                sb.append(percentile[i]).append(",");
+            }
+            sb.append(percentile[percentile.length-1]);
+        }else{
+            sb.append(percentile[0]);
+        }
+
+        System.out.println(Arrays.toString(percentile));
+        String uri = requestBuilder("tanks/mastery/", "&distribution=" + distribution.getValue() + "&percentile=" + sb);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<VehicleMasteryDistribution>>(){}.getType();
+        OkStatus< VehicleMasteryDistribution> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public Map<String, InformationAboutStronghold> getInformationAboutStronghold(int clanId){
+        String uri = requestBuilder("stronghold/claninfo/", "&clan_id=" + clanId);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, InformationAboutStronghold>>>(){}.getType();
+        OkStatus<Map<String, InformationAboutStronghold>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public List<ClanReserves> getClanReserves(String accessToken){
+        String uri = requestBuilder("stronghold/clanreserves/", "&access_token=" + accessToken);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<List<ClanReserves>>>(){}.getType();
+        OkStatus<List<ClanReserves>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public List<Fronts> getFronts(){
+        String uri = requestBuilder("globalmap/fronts/", "");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<List<Fronts>>>(){}.getType();
+        OkStatus<List<Fronts>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public List<Provinces> getProvinces(String frontId){
+        String uri = requestBuilder("globalmap/provinces/", "&front_id=" + frontId);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<List<Provinces>>>(){}.getType();
+        OkStatus<List<Provinces>> status = gson.fromJson(response, statusType);
 
         return status.getData();
     }

@@ -2,6 +2,7 @@ package com.rawsaurus;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.rawsaurus.enums.Distribution;
 import com.rawsaurus.model.accounts.Players;
 import com.rawsaurus.model.accounts.PlayersVehicles;
 import com.rawsaurus.model.status.CheckStatus;
@@ -24,7 +25,16 @@ public class App
     public static void main( String[] args )
     {
         AppRequest appRequest = new AppRequest();
-        System.out.println(appRequest.getCrewSkills());
+//        System.out.println(appRequest.getProvinces("season_22_eu"));
+//        System.out.println(appRequest.getFronts());
+//        System.out.println(appRequest.getClanReserves("b02232ac47788d203c7f45ecaa4806d697eccfe8"));
+//        System.out.println(appRequest.getInformationAboutStronghold(500202208));
+//        System.out.println(appRequest.getPlayersAchievements(562436344));
+//        System.out.println(appRequest.getPlayerPersonalData("b02232ac47788d203c7f45ecaa4806d697eccfe8",562436344));
+//        System.out.println(appRequest.getVehicleMasteryDistribution(Distribution.DAMAGE, 1,2,3));
+//        System.out.println(appRequest.getVehicleAchievements(562436344));
+//        System.out.println(appRequest.getVehicleStatistics(562436344));
+//        System.out.println(appRequest.getCrewSkills());
 //        System.out.println(appRequest.getCrewQualifications());
 //        System.out.println(appRequest.getBadges());
 //        System.out.println(appRequest.getModules());
@@ -37,7 +47,42 @@ public class App
 //        System.out.println(appRequest.getAchievements());
 //        System.out.println(appRequest.getVehicleCharacteristics(1));
 //        System.out.println(appRequest.getVehicles().get("1").toString());
+//        System.out.println(appRequest.getPlayers("RawSaurus"));
 
+//        String toChange = """
+//                "private.boosters"
+//                "private.garage"
+//                "private.grouped_contacts"
+//                "private.personal_missions"
+//                "private.rented"
+//                "statistics.epic"
+//                "statistics.fallout"
+//                "statistics.globalmap_absolute"
+//                "statistics.globalmap_champion"
+//                "statistics.globalmap_middle"
+//                "statistics.random"
+//                "statistics.ranked_10x10"
+//                "statistics.ranked_15x15"
+//                "statistics.ranked_battles"
+//                "statistics.ranked_battles_current"
+//                "statistics.ranked_battles_previous"
+//                "statistics.ranked_season_1"
+//                "statistics.ranked_season_2"
+//                "statistics.ranked_season_3"
+//                """;
+//
+//        StringBuilder sb = new StringBuilder();
+//        boolean flag = false;
+//        for(char c : toChange.toCharArray()){
+//            if(c == '"'){
+//                if(flag) {
+//                    c = ',';
+//                }
+//                flag = !flag;
+//            }
+//            sb.append(c);
+//        }
+//        System.out.println(sb.toString().replaceAll("\"", ""));
 
 //        List<Players> list = appRequest.getPlayers("rawsaurus");
 //        System.out.println(list.get(0).getAccount_id());
