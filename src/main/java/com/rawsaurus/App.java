@@ -25,7 +25,12 @@ public class App
     public static void main( String[] args )
     {
         AppRequest appRequest = new AppRequest();
-        System.out.println(appRequest.getMapStatus());
+        System.out.println(appRequest.getTopClans("battles_count_avg_daily"));
+//        System.out.println(appRequest.getAdjacentPositionsInClanRatings(500202208, "battles_count_avg_daily"));
+//        System.out.println(appRequest.getClanRatings(500202208));
+//        System.out.println(appRequest.getDatesWithAvailableRatings());
+//        System.out.println(appRequest.getTypesOfRatings());
+//        System.out.println(appRequest.getMapStatus());
 //        System.out.println(appRequest.getEvents());
 //        System.out.println(appRequest.getSeasonRating("season_21_container", 10));
 //        System.out.println(appRequest.getSeasons());

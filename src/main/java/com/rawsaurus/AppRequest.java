@@ -7,6 +7,7 @@ import com.rawsaurus.model.accounts.PlayerPersonalData;
 import com.rawsaurus.model.accounts.Players;
 import com.rawsaurus.model.accounts.PlayersAchievements;
 import com.rawsaurus.model.accounts.PlayersVehicles;
+import com.rawsaurus.model.clan_ratings.*;
 import com.rawsaurus.model.globalmap.*;
 import com.rawsaurus.model.players_vehicles.VehicleAchievements;
 import com.rawsaurus.model.players_vehicles.VehicleMasteryDistribution;
@@ -647,6 +648,71 @@ public class AppRequest {
 
         Type statusType = new TypeToken<OkStatus<MapStatus>>(){}.getType();
         OkStatus<MapStatus> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public TypesOfRatings getTypesOfRatings(){
+        String uri = requestBuilder("clanratings/types/", "");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<TypesOfRatings>>(){}.getType();
+        OkStatus<TypesOfRatings> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public DatesWithAvailableRatings getDatesWithAvailableRatings(){
+        String uri = requestBuilder("clanratings/dates/", "");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<DatesWithAvailableRatings>>(){}.getType();
+        OkStatus<DatesWithAvailableRatings> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public Map<String, ClanRatings> getClanRatings(int clanId){
+        String uri = requestBuilder("clanratings/clans/", "&clan_id="+clanId);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, ClanRatings>>>(){}.getType();
+        OkStatus<Map<String, ClanRatings>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public List<AdjacentPositionsInClanRatings> getAdjacentPositionsInClanRatings(int clanId, String rankField){
+        String uri = requestBuilder("clanratings/neighbors/", "&clan_id="+clanId+"&rank_field="+rankField);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<List<AdjacentPositionsInClanRatings>>>(){}.getType();
+        OkStatus<List<AdjacentPositionsInClanRatings>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public List<TopClans> getTopClans(String rankField){
+        String uri = requestBuilder("clanratings/top/", "&rank_field="+rankField);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<List<TopClans>>>(){}.getType();
+        OkStatus<List<TopClans>> status = gson.fromJson(response, statusType);
 
         return status.getData();
     }
