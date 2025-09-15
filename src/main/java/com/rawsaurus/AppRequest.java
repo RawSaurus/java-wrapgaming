@@ -8,6 +8,10 @@ import com.rawsaurus.model.accounts.Players;
 import com.rawsaurus.model.accounts.PlayersAchievements;
 import com.rawsaurus.model.accounts.PlayersVehicles;
 import com.rawsaurus.model.clan_ratings.*;
+import com.rawsaurus.model.clans.ClanDetailsInfo;
+import com.rawsaurus.model.clans.ClanGlossary;
+import com.rawsaurus.model.clans.ClanMemberDetails;
+import com.rawsaurus.model.clans.Clans;
 import com.rawsaurus.model.globalmap.*;
 import com.rawsaurus.model.players_vehicles.VehicleAchievements;
 import com.rawsaurus.model.players_vehicles.VehicleMasteryDistribution;
@@ -713,6 +717,59 @@ public class AppRequest {
 
         Type statusType = new TypeToken<OkStatus<List<TopClans>>>(){}.getType();
         OkStatus<List<TopClans>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public List<Clans> getClans(){
+        String uri = requestBuilder("clans/list/", "");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<List<Clans>>>(){}.getType();
+        OkStatus<List<Clans>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public Map<String, ClanDetailsInfo> getClanDetailsInfo(int clanId){
+        String uri = requestBuilder("clans/info/", "&clan_id="+clanId);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, ClanDetailsInfo>>>(){}.getType();
+        OkStatus<Map<String, ClanDetailsInfo>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    //accountId should be a list
+    public Map<String, ClanMemberDetails> getClanMemberDetails(int accountId){
+        String uri = requestBuilder("clans/accountinfo/", "&account_id="+accountId);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, ClanMemberDetails>>>(){}.getType();
+        OkStatus<Map<String, ClanMemberDetails>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public ClanGlossary getClanGlossary(){
+        String uri = requestBuilder("clans/glossary/", "");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<ClanGlossary>>(){}.getType();
+        OkStatus<ClanGlossary> status = gson.fromJson(response, statusType);
 
         return status.getData();
     }
