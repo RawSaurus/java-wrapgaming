@@ -7,8 +7,7 @@ import com.rawsaurus.model.accounts.PlayerPersonalData;
 import com.rawsaurus.model.accounts.Players;
 import com.rawsaurus.model.accounts.PlayersAchievements;
 import com.rawsaurus.model.accounts.PlayersVehicles;
-import com.rawsaurus.model.globalmap.Fronts;
-import com.rawsaurus.model.globalmap.Provinces;
+import com.rawsaurus.model.globalmap.*;
 import com.rawsaurus.model.players_vehicles.VehicleAchievements;
 import com.rawsaurus.model.players_vehicles.VehicleMasteryDistribution;
 import com.rawsaurus.model.players_vehicles.VehicleStatistics;
@@ -434,6 +433,220 @@ public class AppRequest {
 
         Type statusType = new TypeToken<OkStatus<List<Provinces>>>(){}.getType();
         OkStatus<List<Provinces>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public Map<String, ClanDetails> getClanDetails(int clanId){
+        String uri = requestBuilder("globalmap/claninfo/", "&clan_id=" + clanId);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, ClanDetails>>>(){}.getType();
+        OkStatus<Map<String, ClanDetails>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public Map<String, ClanProvinces> getClanProvinces(int clanId){
+        String uri = requestBuilder("globalmap/clanprovinces/", "&clan_id=" + clanId);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<Map<String, ClanProvinces>>>(){}.getType();
+        OkStatus<Map<String, ClanProvinces>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public List<ClanBattles> getClanBattles(int clanId){
+        String uri = requestBuilder("globalmap/clanbattles/", "&clan_id=" + clanId);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<List<ClanBattles>>>(){}.getType();
+        OkStatus<List<ClanBattles>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public List<Seasons> getSeasons(){
+        String uri = requestBuilder("globalmap/seasons/", "");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<List<Seasons>>>(){}.getType();
+        OkStatus<List<Seasons>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public List<ClanSeasonData> getClanSeasonData(int clanId, String seasonId, int vehicleLevel){
+        String uri = requestBuilder("globalmap/seasonclaninfo/", "&clan_id=" + clanId + "&season_id=" + seasonId + "&vehicle_level=" + vehicleLevel);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<List<ClanSeasonData>>>(){}.getType();
+        OkStatus<List<ClanSeasonData>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public List<AccountSeasonData> getAccountSeasonData(int accountId, String seasonId, int vehicleLevel){
+        String uri = requestBuilder("globalmap/seasonaccountinfo/", "&account_id=" + accountId + "&season_id=" + seasonId + "&vehicle_level=" + vehicleLevel);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<List<AccountSeasonData>>>(){}.getType();
+        OkStatus<List<AccountSeasonData>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public List<SeasonRating> getSeasonRating(String seasonId, int vehicleLevel){
+        String uri = requestBuilder("globalmap/seasonrating/", "&season_id=" + seasonId + "&vehicle_level=" + vehicleLevel);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<List<SeasonRating>>>(){}.getType();
+        OkStatus<List<SeasonRating>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public List<SeasonRating> getAdjacentSeasonClanRating(int clanId, String seasonId, int vehicleLevel){
+        String uri = requestBuilder("globalmap/seasonratingneighbors/", "&clan_id=" + clanId + "&season_id=" + seasonId + "&vehicle_level=" + vehicleLevel);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<List<SeasonRating>>>(){}.getType();
+        OkStatus<List<SeasonRating>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public List<Events> getEvents(){
+        String uri = requestBuilder("globalmap/events/", "");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<List<Events>>>(){}.getType();
+        OkStatus<List<Events>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    //untested. frontId should be a list
+    public List<ClanEventInformation> getClanEventInformation(int clanId, String eventId, String frontId){
+        String uri = requestBuilder("globalmap/eventclaninfo/", "&clan_id="+clanId+"&event_id="+eventId+"&front_id="+frontId);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<List<ClanEventInformation>>>(){}.getType();
+        OkStatus<List<ClanEventInformation>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    //untested. frontId should be a list
+    public List<AccountEventInformation> getAccountEventInformation(int accountId, String eventId, String frontId){
+        String uri = requestBuilder("globalmap/eventaccountinfo/", "&account_id="+accountId+"&event_id="+eventId+"&front_id="+frontId);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<List<AccountEventInformation>>>(){}.getType();
+        OkStatus<List<AccountEventInformation>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    //untested
+    public List<EventAccountRating> getEventAccountRating(String eventId, String frontId){
+        String uri = requestBuilder("globalmap/eventaccountratings/", "&event_id="+eventId+"&front_id="+frontId);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<List<EventAccountRating>>>(){}.getType();
+        OkStatus<List<EventAccountRating>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    //untested
+    public List<AdjacentPositionsInEventAccountRating> getAdjacentPositionsInEventAccountRating(int accountId, String eventId, String frontId){
+        String uri = requestBuilder("globalmap/eventaccountratingneighbors/", "&account_id="+accountId+"&event_id="+eventId+"&front_id="+frontId);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<List<AdjacentPositionsInEventAccountRating>>>(){}.getType();
+        OkStatus<List<AdjacentPositionsInEventAccountRating>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    //untested
+    public List<EventClanRatings> getEventClanRatings(String eventId, String frontId){
+        String uri = requestBuilder("globalmap/eventrating/", "&event_id="+eventId+"&front_id="+frontId);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<List<EventClanRatings>>>(){}.getType();
+        OkStatus<List<EventClanRatings>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    //untested. frontId should be a list
+    public List<AdjacentPositionInEventClanRating> getAdjacentPositionInEventClanRating(int clanId, String eventId, String frontId){
+        String uri = requestBuilder("globalmap/eventratingneighbors/", "&clan_id="+clanId+"&event_id="+eventId+"&front_id="+frontId);
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<List<AdjacentPositionInEventClanRating>>>(){}.getType();
+        OkStatus<List<AdjacentPositionInEventClanRating>> status = gson.fromJson(response, statusType);
+
+        return status.getData();
+    }
+
+    public MapStatus getMapStatus(){
+        String uri = requestBuilder("globalmap/info/", "");
+
+        String response = newRequest(uri);
+
+        checkStatus(response);
+
+        Type statusType = new TypeToken<OkStatus<MapStatus>>(){}.getType();
+        OkStatus<MapStatus> status = gson.fromJson(response, statusType);
 
         return status.getData();
     }

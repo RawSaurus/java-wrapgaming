@@ -25,6 +25,11 @@ public class App
     public static void main( String[] args )
     {
         AppRequest appRequest = new AppRequest();
+        System.out.println(appRequest.getMapStatus());
+//        System.out.println(appRequest.getEvents());
+//        System.out.println(appRequest.getSeasonRating("season_21_container", 10));
+//        System.out.println(appRequest.getSeasons());
+//        System.out.println(appRequest.getClanDetails(500202208));
 //        System.out.println(appRequest.getProvinces("season_22_eu"));
 //        System.out.println(appRequest.getFronts());
 //        System.out.println(appRequest.getClanReserves("b02232ac47788d203c7f45ecaa4806d697eccfe8"));
